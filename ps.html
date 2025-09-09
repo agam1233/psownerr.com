@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agam's PRIVATE Server!</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(circle at top left, #0b0b17, #1c1c2e);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Particle background */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    background: linear-gradient(135deg, rgba(30,30,60,0.85), rgba(60,60,90,0.85));
+    border-radius: 40px;
+    padding: 60px 50px;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 30px 90px rgba(0,0,0,0.95);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255,255,255,0.15);
+    z-index: 1;
+}
+
+h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: #ffdd00;
+    text-shadow: 0 0 20px #ffdd00, 4px 4px 20px #000;
+    animation: glow 2s infinite alternate;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #00d4ff;
+    text-shadow: 2px 2px 20px #000;
+    animation: float 3s ease-in-out infinite;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-top: 15px;
+    color: #ffffffcc;
+    font-weight: 400;
+}
+
+p {
+    font-size: 1.15em;
+    margin: 12px 0;
+}
+
+.link-box {
+    background: rgba(0,0,0,0.4);
+    padding: 40px 30px;
+    border-radius: 25px;
+    margin-top: 25px;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    animation: fadeIn 2s ease forwards;
+}
+
+.link-btn {
+    display: inline-block;
+    margin: 25px 0;
+    padding: 20px 60px;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #1e1e2f;
+    background: linear-gradient(45deg, #ffcc00, #ffd633);
+    border-radius: 35px;
+    text-decoration: none;
+    transition: 0.4s;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+    position: relative;
+    z-index: 1;
+}
+
+.link-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: 0.4s;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.link-btn:hover::before { opacity: 1; }
+
+.link-btn:hover {
+    transform: translateY(-8px) scale(1.12) rotate(-2deg);
+    background: linear-gradient(45deg, #fff14d, #ffdd33);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+}
+
+/* Animations */
+@keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 15px #ffdd00, 3px 3px 20px #000; }
+    to { text-shadow: 0 0 55px #ffdd00, 5px 5px 30px #000; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="container">
+    <h1>AGAM'S PRIVATE SERVER</h1>
+    <h2>Steal a Brainrot VIP Access</h2>
+    <div class="link-box">
+        <p>Click below to join FAST:</p>
+        <a class="link-btn" href="https://www.roblox.com/share?code=8f9c328f6b3c89479e25c8a7750454f9&type=Server" target="_blank">JOIN NOW</a>
+        <p>Or copy & paste this link:</p>
+        <p>https://www.roblox.com/share?code=8f9c328f6b3c89479e25c8a7750454f9&type=Server</p>
+    </div>
+    <h3>ONLY use this if you need to join for admin abuse</h3>
+</div>
+
+<script>
+// Particle effect
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+const colors = ['#ffdd00', '#00d4ff', '#ff55aa'];
+
+for(let i=0;i<100;i++){
+    particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*2 + 1,
+        dx: (Math.random()-0.5)*1.5,
+        dy: (Math.random()-0.5)*1.5,
+        color: colors[Math.floor(Math.random()*colors.length)]
+    });
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let p of particles){
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if(p.x < 0 || p.x > canvas.width) p.dx*=-1;
+        if(p.y < 0 || p.y > canvas.height) p.dy*=-1;
+    }
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
